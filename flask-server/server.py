@@ -59,13 +59,13 @@ def index():
         notes = Notes.query.order_by(Notes.id).all()
         return jsonify(notes)
     if request.method == 'POST':
-        var = request.get_json(force=True)
-        json_array = var[0]
+        json_array = request.get_json(force=True)
+        print(json_array)
         note = Notes(header=json_array['header'], text=json_array['text'], creator=current_user.get_id())
         try:
             db.session.add(note)
             db.session.commit()
-            return jsonify(var)
+            return json_array
         except sqlite3.Error as e:
             return "При создании заметки произошла ошибка: " + str(e)
 
