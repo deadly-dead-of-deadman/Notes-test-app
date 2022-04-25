@@ -19,7 +19,7 @@ export const Form = ({userInput, onChange})=> {
     }
 
     return (
-        <>
+        <div class = "note-form">
             <h2>Add note</h2>
             <form onSubmit={handleSubmit}>
                 <div class ="form-header">
@@ -37,6 +37,6 @@ export const Form = ({userInput, onChange})=> {
                 </span>
 
             </form>
-        </>
+        </div>
     )
 }

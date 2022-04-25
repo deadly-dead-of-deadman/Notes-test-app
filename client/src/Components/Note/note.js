@@ -2,7 +2,7 @@ import React from "react";
 
 export const Note = ({ noteList }) => {
     return (
-        <>
+        <div class ="notes">
             {noteList.map(note => {
                 return (
                     <div class="note" key={note.id}>
@@ -11,6 +11,6 @@ export const Note = ({ noteList }) => {
                     </div>
                 )
             })}
-        </>
+        </div>
     )
 }

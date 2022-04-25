@@ -1,0 +1,16 @@
+
+.notes {
+  position: absolute;
+  top:75%;
+  left:15%;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10%;
+}
+
+.note {
+  color: white;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #597ab2;
+}
