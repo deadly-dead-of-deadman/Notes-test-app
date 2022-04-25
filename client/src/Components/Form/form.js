@@ -14,18 +14,28 @@ export const Form = ({userInput, onChange})=> {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(note)
         }).then(() =>{
-            console.log('shits added')
+            console.log('note added')
         })
     }
 
     return (
         <>
+            <h2>Add note</h2>
             <form onSubmit={handleSubmit}>
+                <div class ="form-header">
                     <input type='text'
                            required value ={header} onChange={(e) => setHeader(e.target.value)}></input>
+                    <label>Header</label>
+                </div>
+                <div class ="form-content">
                     <input type='text'
                            required value = {text} onChange={(e) => setText(e.target.value)}></input>
-                    <button value='Создать'></button>
+                    <label>Content</label>
+                </div>
+                <span>
+                    <button>Save</button>
+                </span>
+
             </form>
         </>
     )

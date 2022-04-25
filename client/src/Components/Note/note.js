@@ -5,9 +5,9 @@ export const Note = ({ noteList }) => {
         <>
             {noteList.map(note => {
                 return (
-                    <div key={note.id}>
-                        <h2>{note.header}</h2>
-                        <h3>{note.text}</h3>
+                    <div class="note" key={note.id}>
+                            <h2>{note.header}</h2>
+                            <h3>{note.text}</h3>
                     </div>
                 )
             })}

@@ -6,18 +6,21 @@ export const NotePage = ()=>{
     const [note, setNote] = useState([])
 
     useEffect(() =>{
-        fetch("/").then(
+        fetch("http://127.0.0.1:5000/").then(
             res => res.json()
         ).then(
-            data => setNote(data)
+            data => {
+                setNote(data)
+            }
         )
     }, [])
 
-
     return(
-        <>
-            <Form/>
-            <Note noteList={note}/>
-        </>
+        <div>
+            <div class = "note-form">
+                <Form/>
+            </div>
+                <Note noteList={note}/>
+        </div>
     )
 }
