@@ -9,8 +9,25 @@
 }
 
 .note {
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
   color: white;
   box-sizing: border-box;
   border-radius: 10px;
-  background-color: #597ab2;
+  background-color: #45A29E;
+}
+
+.deleteButton{
+  border: 2px solid white;
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  background-color: #0B0C10;
+  cursor: pointer;
+  color: white
+}
+
+.deleteButton:hover{
+    border-color: #0B0C10;
+    background-color: white;
+    color: #0B0C10;
 }

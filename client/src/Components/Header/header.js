@@ -2,9 +2,9 @@
 export const Header = () => {
     return (
         <div class ="header">
-            <a href="/" className="logo">Notes</a>
+            <a href="/" class="logo">Notes</a>
             <div>
-                <a href="">Sign up</a>
+                <a class="register" href="/register">Sign up</a>
             </div>
         </div>
     )

@@ -15,7 +15,7 @@
 .note-form h2 {
   margin: 0 0 30px;
   padding: 0;
-  color: #fff;
+  color: #66FCF1;
   text-align: center;
 }
 
@@ -53,13 +53,20 @@
   transition: .5s;
 }
 
-button{
-  background-color: #4CAF50; /* Green */
-  border: none;
+.saveButton{
+  border: 2px solid white;
+  background-color: #4CAF50;
   color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 20px;
+  cursor: pointer;
+}
+
+.saveButton:hover{
+    border: 2px solid #4CAF50;
+    background: white;
+    color: #4CAF50;
 }

@@ -6,7 +6,6 @@ export const Form = ({userInput, onChange})=> {
     const [text, setText] = useState('')
 
     const handleSubmit = (e) => {
-        e.preventDefault();
         const note = {header, text};
 
         fetch('/', {
@@ -33,7 +32,7 @@ export const Form = ({userInput, onChange})=> {
                     <label>Content</label>
                 </div>
                 <span>
-                    <button>Save</button>
+                    <button class ="saveButton">Save</button>
                 </span>
 
             </form>

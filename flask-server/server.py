@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, redirect
+from flask import Flask, jsonify, request, redirect, json
 from dataclasses import dataclass
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 import sqlite3
@@ -60,7 +60,6 @@ def index():
         return jsonify(notes)
     if request.method == 'POST':
         json_array = request.get_json(force=True)
-        print(json_array)
         note = Notes(header=json_array['header'], text=json_array['text'], creator=current_user.get_id())
         try:
             db.session.add(note)
@@ -68,6 +67,18 @@ def index():
             return json_array
         except sqlite3.Error as e:
             return "При создании заметки произошла ошибка: " + str(e)
+
+
+@app.route("/delete/<noteId>", methods=['DELETE'])
+def delete(noteId):
+    note = Notes.query.get(noteId)
+    if True:
+        try:
+            Notes.query.filter(Notes.id == noteId).delete()
+            db.session.commit()
+            return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+        except sqlite3.IntegrityError as err:
+            return "При удалении заметки произошла ошибка: " + str(err)
 
 
 # Регистрация
