@@ -9,6 +9,7 @@ export const NotePage = ()=>{
     const [modalActive, setModalActive] = useState(false)
     const [header, setHeader] = useState('')
     const [text, setText] = useState('')
+    const [edit_id, setEditId] = useState('add')
 
     function closeModal(){
         setModalActive(false)
@@ -24,8 +25,8 @@ export const NotePage = ()=>{
         )
     }, [])
 
-    const handleSubmit = (e) => {
-        const note = {header, text};
+    const handleSubmit = () => {
+        const note = {header, text, edit_id};
         fetch('/', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
@@ -33,6 +34,7 @@ export const NotePage = ()=>{
         }).then(() =>{
             console.log('note added')
         })
+        setEditId('add')
     }
 
     return(
@@ -40,8 +42,14 @@ export const NotePage = ()=>{
             <div className="note-page">
                 <Header setModalActive ={setModalActive}/>
                 <div className="note-page-content">
-                    <Form setHeader={setHeader} setText={setText} handleSubmit={handleSubmit} header={header} text={text}/>
-                    <Note setHeader={setHeader} setText={setText} noteList={note}/>
+                    <Form setHeader={setHeader}
+                          setText={setText}
+                          handleSubmit={handleSubmit}
+                          header={header} text={text}/>
+                    <Note setHeader={setHeader}
+                          setText={setText}
+                          setEditId = {setEditId}
+                          noteList={note}/>
                 </div>
             </div>
             {modalActive && <Modal closeModal={closeModal}/>}

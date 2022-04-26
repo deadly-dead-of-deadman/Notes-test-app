@@ -62,13 +62,28 @@ def index():
         return jsonify(notes)
     if request.method == 'POST':
         json_array = request.get_json(force=True)
-        note = Notes(header=json_array['header'], text=json_array['text'], creator=current_user.get_id())
-        try:
-            db.session.add(note)
-            db.session.commit()
-            return json_array
-        except sqlite3.Error as e:
-            return "При создании заметки произошла ошибка: " + str(e)
+        # Adding note
+        if json_array['edit_id'] == 'add':
+            note = Notes(header=json_array['header'], text=json_array['text'], creator=current_user.get_id())
+            try:
+                db.session.add(note)
+                db.session.commit()
+                return json_array
+            except sqlite3.Error as e:
+                return "При создании заметки произошла ошибка: " + str(e)
+        else:
+            # Editing note
+            newHeader = json_array['header']
+            newText = json_array['text']
+            edit_id = json_array['edit_id']
+            note_to_edit = Notes.query.get(edit_id)
+            try:
+                note_to_edit.header = newHeader
+                note_to_edit.text = newText
+                db.session.commit()
+                return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
+            except:
+                return json.dumps({'success': False}), 404, {'ContentType': 'application/json'}
 
 
 @app.route("/delete/<noteId>", methods=['DELETE'])

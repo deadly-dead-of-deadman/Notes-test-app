@@ -1,6 +1,7 @@
 import React from "react";
 
-export const Note = ({ noteList, setText,setHeader }) => {
+export const Note = ({ noteList, setText,setHeader, setEditId }) => {
+
         function deleteNote (id)
         {
             fetch("http://127.0.0.1:5000/delete/" + id, {
@@ -14,6 +15,7 @@ export const Note = ({ noteList, setText,setHeader }) => {
         {
             setHeader(noteList[id].header)
             setText(noteList[id].text)
+            setEditId(id)
         }
 
     return (

@@ -1,21 +1,6 @@
 import React, {useState} from "react";
 
-export const Form = ({handleSubmit, setHeader, setText, header, text})=> {
-
-    const [editHeader, setEditHeader] = useState('')
-    const [editText, setEditText] = useState('')
-
-    const handleEdit = (id) =>{
-        let curUser = 0;
-        const editNote = {editHeader,editText,curUser}
-        fetch('/edit', {
-            method: 'PUT',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(editNote)
-        }).then(() =>{
-            console.log('note added')
-        })
-    }
+export const Form = ({handleSubmit, setHeader, setText, header, text, setEditId})=> {
 
     return (
         <div class = "note-form">
