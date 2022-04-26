@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, redirect, json
+from flask_cors import CORS
 from dataclasses import dataclass
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 import sqlite3
@@ -13,6 +14,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'impossible_to_hack'
 
 db = SQLAlchemy(app)
+CORS(app)
 login_manager = LoginManager(app)
 USER_ID = 0
 
@@ -76,7 +78,7 @@ def delete(noteId):
         try:
             Notes.query.filter(Notes.id == noteId).delete()
             db.session.commit()
-            return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+            return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
         except sqlite3.IntegrityError as err:
             return "При удалении заметки произошла ошибка: " + str(err)
 
@@ -85,15 +87,15 @@ def delete(noteId):
 @app.route("/register", methods=["POST"])
 def register():
     if request.method == "POST":
-        json = request.get_json(force=True)[0]
-        if len(json['login']) > 4 and len(json['password']) > 4:
-            user_login = json['login']
-            password = str(generate_password_hash(json['password']))
+        register_json = request.get_json(force=True)
+        if len(register_json['login']) > 4 and len(register_json['password']) > 4:
+            user_login = register_json['login']
+            password = str(generate_password_hash(register_json['password']))
             user = Users(login=user_login, password=password)
             try:
                 db.session.add(user)
                 db.session.commit()
-                return redirect('/login')
+                return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
             except sqlite3.Error as e:
                 print("Ошибка добавления пользователя в БД " + str(e))
                 return "При создании профиля произошла ошибка"
@@ -106,19 +108,20 @@ def register():
 @login_required
 def logout():
     logout_user()
-    return redirect('/')
+    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
 
 
 # Логин
 @app.route('/login', methods=["POST", "GET"])
 def login():
     if request.method == "POST":
-        json = request.get_json(force=True)[0]
-        user = Users.query.filter_by(login=json['login']).first()
-        if user and check_password_hash(user.password, json['password']):
+        login_json = request.get_json(force=True)
+        user = Users.query.filter_by(login=login_json['login']).first()
+        if user and check_password_hash(user.password, login_json['password']):
             user_login = userLogin()
             user_login.create(user)
             login_user(user_login)
+            return json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
         else:
             return "Неверный пароль или логин"
 

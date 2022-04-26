@@ -1,11 +1,10 @@
+import React from "react";
 
-export const Header = () => {
+export const Header = ({setModalActive}) => {
     return (
         <div class ="header">
             <a href="/" class="logo">Notes</a>
-            <div>
-                <a class="register" href="/register">Sign up</a>
-            </div>
+            <button className="loginButton" onClick={() => setModalActive(true)}>Sign up/ Sign in</button>
         </div>
     )
 }
