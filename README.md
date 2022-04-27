@@ -7,4 +7,4 @@ Functionality:
 
 Tech:
 - Python(Flask)
-- JS(REACT)
+- JS(React)
