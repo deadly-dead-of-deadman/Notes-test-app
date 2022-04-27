@@ -6,5 +6,5 @@ Functionality:
 - Deleting notes
 
 Tech:
--Python(Flask)
--JS(REACT)
+- Python(Flask)
+- JS(REACT)
