@@ -1,5 +1,6 @@
 import {RegisterForm} from "../RegisterForm/registerForm";
 import {SignInForm} from "../SignInForm/signInForm";
+
 const Modal = ({closeModal}) => {
     return (
         <div class="modal">
