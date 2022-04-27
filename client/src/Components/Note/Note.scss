@@ -1,0 +1,57 @@
+@import '../../../../../../Desktop/Notes-test-app-main/client/src/style/color';
+@import '../../../../../../Desktop/Notes-test-app-main/client/src/style/shadow';
+
+.note {
+  box-shadow: $--shadow;
+  color: $--accent;
+  box-sizing: border-box;
+  border-radius: 16px;
+  background-color: $--background;
+  padding: 16px;
+  padding-right: 40px;
+  min-height: 160px;
+  min-width: 240px;
+  max-width: 480px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  .note-header{
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+  }
+  .note-text{
+    word-wrap: break-word;
+    margin-top: 4px;
+  }
+  .delete-button {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: $--accent;
+    transition: all 200ms ease;
+    &:hover {
+      transform: scale(0.9);
+    }
+  }
+  .edit-button {
+    position: absolute;
+    right: 8px;
+    top: 40px;
+    height: 30px;
+    width: 30px;
+    padding: 3px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: $--accent;
+    transition: all 200ms ease;
+    &:hover {
+      transform: scale(0.9);
+    }
+  }
+}

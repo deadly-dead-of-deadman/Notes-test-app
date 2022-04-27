@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import '../../../../Desktop/Notes-test-app-main/client/src/style/color';
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family:Poppins;
+}
+
+.App {
+  background-color: $--dark-background;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

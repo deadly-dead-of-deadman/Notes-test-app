@@ -1,0 +1,51 @@
+@import '../../../../../../Desktop/Notes-test-app-main/client/src/style/color';
+@import '../../../../../../Desktop/Notes-test-app-main/client/src/style/shadow';
+
+.note-form {
+  width: 400px;
+  padding: 32px 48px;
+  background: $--background;
+  box-sizing: border-box;
+  box-shadow: $--shadow;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  .title {
+    color: $--accent;
+    text-align: center;
+  }
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    .input {
+      width: 100%;
+      padding: 8px 0;
+      font-size: 16px;
+      color: $--accent;
+      border: none;
+      border-bottom: 1px solid $--accent;
+      background: transparent;
+      outline: none;
+    }
+  }
+  .saveButton {
+    background-color: $--yellow;
+    border: none;
+    padding: 8px 16px;
+    margin-top: 32px;
+    font-size: 24px;
+    font-weight: 700;
+    width: 160px;
+    cursor: pointer;
+    border-radius: 16px;
+    color: $--background;
+    transition: all 200ms ease;
+    &:hover {
+      transform: scale(0.95);
+    }
+  }
+}
